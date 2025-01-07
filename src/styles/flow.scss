@@ -1,0 +1,21 @@
+:root {
+  --vf-node-bg: #fff;
+  --vf-node-text: #222;
+  --vf-connection-path: #b1b1b7;
+  --vf-handle: #555;
+}
+
+.vue-flow__node-custom {
+  .el-card {
+    min-width: 320px;
+    height: 128px;
+  }
+}
+
+.vue-flow__handle {
+  width: 8px;
+  height: 8px;
+  background: var(--vf-handle);
+  border: 1px solid #fff;
+  border-radius: 100%;
+}
