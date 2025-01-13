@@ -19,7 +19,7 @@
     <template #header>
       <div class="h-center">
         <el-icon color="#409eff" class="el-icon--left">
-          <Right/>
+          <ArrowRightToLine />
         </el-icon>
         <span class="left-last">{{ model.name }}</span>
       </div>
@@ -31,7 +31,7 @@
 <script lang="ts" setup>
 import {IEndNode} from '@/types/node'
 import {Handle, Position} from '@vue-flow/core'
-import {Right} from "@element-plus/icons-vue";
+import {ArrowRightToLine} from "lucide-vue-next"
 
 const model = defineModel<IEndNode>({required: true})
 </script>

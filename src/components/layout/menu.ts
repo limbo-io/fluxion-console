@@ -10,19 +10,19 @@ export const menuItems: MenuItem[] = [
   {
     id: '000001',
     name: 'menus.trigger',
-    icon: 'el-icon-clock',
+    icon: 'clock',
     route: '/trigger/list',
   },
   {
     id: '000002',
     name: 'menus.flow',
-    icon: 'el-icon-calendar',
+    icon: 'calendar-days',
     route: '/flow/list',
   },
   {
     id: '000003',
     name: 'menus.execution',
-    icon: 'el-icon-calendar',
+    icon: 'calendar-days',
     route: '/flow/edit',
   },
 ]

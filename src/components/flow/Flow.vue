@@ -27,13 +27,13 @@
               placement="bottom-start"
               :content="flow.description"
             >
-              <el-icon class="el-icon--right"><More /></el-icon>
+              <el-icon class="el-icon--right"><Ellipsis /></el-icon>
             </el-tooltip>
             <el-icon class="el-icon--right" @click="() => {saveDialogOpen = true; saveDialogForm = {
                 id: flow.id,
                 name: flow.name,
                 description: flow.description
-              }}"><Edit /></el-icon>
+              }}"><SquarePen /></el-icon>
           </div>
         </template>
         <template #extra>
@@ -115,7 +115,7 @@ import {ConnectionMode, MarkerType, Panel, useVueFlow, VueFlow, VueFlowStore} fr
 import {Background} from '@vue-flow/background'
 import {newExecutorNodeProps, newNodeProps} from '@/components/flow/utils'
 import {FlowNodeProps, IFlowNode, NodeExtendKeys, NodeType} from '@/types/node'
-import {Edit, More, Plus} from "@element-plus/icons-vue";
+import {SquarePen, Ellipsis, Plus} from "lucide-vue-next";
 import type {Edge} from "@vue-flow/core/dist/types/edge";
 import {FlowEdge, IFlow} from "@/types/flow";
 import flowApi, {FlowUpdateRequest} from "@/api/flowApi";

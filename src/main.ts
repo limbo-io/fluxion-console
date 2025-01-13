@@ -1,6 +1,5 @@
 // Components
 import ElementPlus from "element-plus";
-import {iconPlugin} from "@/plugins/icon";
 import i18n from "@/i18n";
 import router from "@/router";
 import pinia from "@/stores";
@@ -20,7 +19,6 @@ const app = createApp(App)
 
 app
   .use(ElementPlus)
-  .use(iconPlugin)
   .use(i18n)
   .use(router)
   .use(pinia)

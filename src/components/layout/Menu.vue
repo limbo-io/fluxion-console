@@ -4,7 +4,7 @@
 
     <!-- LOGO -->
     <div class="logo-container">
-      <img class="logo-img" src="@/assets/logo.svg" alt="logo"/>
+      <img class="logo-img" src="@/assets/logo.png" alt="logo"/>
     </div>
 
     <el-scrollbar>
@@ -52,7 +52,7 @@
 import {useRoute} from "vue-router"
 import {useI18n} from 'vue-i18n'
 import {MenuItem, menuItems} from './menu'
-import {iconMapping} from './icon'
+import {iconMapping} from '../../plugins/icon'
 
 const { t } = useI18n()
 
@@ -94,8 +94,8 @@ const menuHiddenClass = () => {
     }
 
     img {
-      width: 70%;
-      height: 100%;
+      width: 100px;
+      height: 100px;
     }
   }
 

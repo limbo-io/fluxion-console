@@ -18,7 +18,7 @@
 
 <script lang="ts" setup>
 import {IExecutorNode, IFlowNode, NodeType} from '@/types/node'
-import {Cpu} from "@element-plus/icons-vue";
+import {Cpu} from "lucide-vue-next"
 
 const isOpen = ref(false)
   const node = ref<IFlowNode>()

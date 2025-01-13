@@ -23,7 +23,7 @@
         </el-icon>
         <span class="left-last">{{ model.name }}</span>
         <el-icon class="to-right">
-          <MoreFilled/>
+          <Ellipsis/>
         </el-icon>
       </div>
     </template>
@@ -35,7 +35,7 @@
 <script lang="ts" setup>
 import {IExecutorNode} from '@/types/node'
 import {Handle, Position} from '@vue-flow/core'
-import {Cpu, MoreFilled} from "@element-plus/icons-vue";
+import {Cpu, Ellipsis} from "lucide-vue-next";
 
 const model = defineModel<IExecutorNode>({required: true})
 </script>
