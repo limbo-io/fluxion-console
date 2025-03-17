@@ -14,6 +14,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/', component: Layout, children: [
       {path: '/trigger/list', component: TriggerList},
+      {path: '/trigger/edit', component: TriggerEdit},
       {path: '/trigger/edit/:id', component: TriggerEdit},
       {path: '/flow/list', component: FlowLIst},
     ]

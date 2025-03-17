@@ -15,6 +15,7 @@ declare module 'vue' {
     ExecutorNode: typeof import('./components/flow/node/ExecutorNode.vue')['default']
     ExecutorSidebar: typeof import('./components/flow/sidebar/ExecutorSidebar.vue')['default']
     Flow: typeof import('./components/flow/Flow.vue')['default']
+    FlowExecuteForm: typeof import('./components/execute/FlowExecuteForm.vue')['default']
     Layout: typeof import('./components/layout/Layout.vue')['default']
     Main: typeof import('./components/layout/Main.vue')['default']
     Menu: typeof import('./components/layout/Menu.vue')['default']

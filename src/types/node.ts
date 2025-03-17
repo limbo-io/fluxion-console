@@ -1,6 +1,6 @@
 import { Node } from '@vue-flow/core'
-import { Trigger } from '@/types/trigger'
-import {Executor} from "@/types/executor";
+import { TriggerConfig } from '@/types/trigger'
+import {Executor} from "@/types/execute";
 
 export enum NodeType {
   START = "start",
@@ -39,7 +39,7 @@ export interface FlowNodeProps extends Node {
  * @deprecated
  */
 export interface ITriggerNode extends IFlowNode {
-  triggers: Trigger[]
+  triggers: TriggerConfig[]
 }
 
 export interface IStartNode extends IFlowNode {

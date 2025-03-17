@@ -1,5 +1,5 @@
 import {IFlowNode} from "@/types/node";
-import {Trigger} from "@/types/trigger";
+import {TriggerConfig} from "@/types/trigger";
 
 export interface FlowEdge {
   /**
@@ -53,7 +53,7 @@ export interface IFlow {
   /**
    * 触发器
    */
-  triggers?: Trigger[]
+  triggers?: TriggerConfig[]
 }
 
 export interface FlowProps {

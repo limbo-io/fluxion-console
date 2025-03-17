@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { WebhookTrigger } from '@/types/trigger'
+  import { WebhookTriggerConfig } from '@/types/trigger'
 
-  const model = defineModel<WebhookTrigger>({ required: true })
+  const model = defineModel<WebhookTriggerConfig>({ required: true })
 </script>

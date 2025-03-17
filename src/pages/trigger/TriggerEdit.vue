@@ -18,65 +18,150 @@
   <el-container>
     <el-main>
       <el-form>
-        <template v-if="trigger?.type === TriggerType.SCHEDULE">
-          <ScheduleTriggerForm v-model="trigger!.config!.trigger as ScheduleTrigger"/>
+        <el-form-item label="执行类型" label-width="100px" :required="true">
+          <el-select v-model="trigger.executeConfig.type" placeholder="请选择">
+            <el-option v-for="item in executeTypes"
+                       :key="item.value"
+                       :label="item.label"
+                       :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
+        <template v-if="trigger.executeConfig.type === ExecuteType.FLOW">
+          <el-form-item label="流程" label-width="100px" :required="true">
+            <el-select
+              v-model="trigger.executeConfig.flowId"
+              placeholder="请选择"
+              filterable
+              remote
+              reserve-keyword
+              :remote-method="loadFlowRefs"
+            >
+              <el-option v-for="item in flowRefs"
+                         :key="item.value"
+                         :label="item.label"
+                         :value="item.value"
+              />
+            </el-select>
+          </el-form-item>
         </template>
-<!--        <template v-else-if="trigger?.type === TriggerType.WEBHOOK">-->
-<!--          <WebhookTriggerForm v-model="trigger as WebhookTrigger"/>-->
-<!--        </template>-->
+        <template v-else-if="trigger.executeConfig.type === ExecuteType.EXECUTOR">
+          <el-form-item label="执行器" label-width="100px" :required="true">
+            <el-input v-model="trigger.executeConfig.name"/>
+          </el-form-item>
+        </template>
+        <!-- 触发方式 -->
+        <el-form-item label="触发方式" label-width="100px" :required="true">
+          <el-select v-model="trigger.type" placeholder="请选择"
+                     @change="changeTriggerConfig"
+                     :disabled="trigger.id"
+          >
+            <el-option v-for="item in triggerTypes"
+                       :key="item.value"
+                       :label="item.label"
+                       :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
+        <template v-if="trigger.type === TriggerType.SCHEDULE">
+          <ScheduleTriggerForm v-model="trigger.triggerConfig as ScheduleTriggerConfig"/>
+        </template>
+        <!--        <template v-else-if="trigger?.type === TriggerType.WEBHOOK">-->
+        <!--          <WebhookTriggerForm v-model="trigger as WebhookTrigger"/>-->
+        <!--        </template>-->
       </el-form>
     </el-main>
     <el-footer>
-      <el-button type="primary" @click="publish">{{t('options.save')}}</el-button>
+      <el-button type="primary" @click="save">{{ t('options.save') }}</el-button>
     </el-footer>
   </el-container>
 </template>
 
 <script lang="ts" setup>
 import {useI18n} from 'vue-i18n'
-import triggerApi, {TriggerView} from "@/api/triggerApi"
-import {ScheduleTrigger, ScheduleType, TriggerType} from "@/types/trigger"
+import triggerApi from "@/api/triggerApi"
+import {ScheduleTriggerConfig, ScheduleType, TriggerConfig, TriggerType} from "@/types/trigger"
 import ScheduleTriggerForm from './components/ScheduleTriggerForm.vue'
+import {ref} from "vue";
+import {useRouter} from "vue-router";
+import {ExecuteConfig, ExecuteType} from "@/types/execute";
 
-const { t } = useI18n()
-
+const {t} = useI18n()
 const route = useRoute()
-const trigger = ref<TriggerView>()
+const router = useRouter()
 
-const publish = () => {
-  triggerApi.publish({
-    id: trigger.value!.id,
-    config: trigger.value!.config!
-  })
+interface ITriggerEditForm {
+  id?: string,
+  name?: string
+  type?: TriggerType
+  executeType?: ExecuteType
+  triggerConfig: TriggerConfig
+  executeConfig: ExecuteConfig
+  description?: string
 }
 
-const load = (id: string) => {
-  triggerApi.get(id).then(res => {
-    const f = res.data
-    if (!f) {
-      return
+const triggerTypes = [
+  {
+    label: '调度',
+    value: TriggerType.SCHEDULE,
+  }
+]
+
+const executeTypes = [
+  {
+    label: '执行器',
+    value: ExecuteType.EXECUTOR,
+  },
+  {
+    label: '流程',
+    value: ExecuteType.FLOW,
+  },
+]
+
+const trigger = ref<ITriggerEditForm>({ triggerConfig: {}, executeConfig: {}})
+
+const changeTriggerConfig = () => {
+  const tg = trigger.value
+  if (!tg.triggerConfig) {
+    tg.triggerConfig = {
+      type: tg.type!
     }
-    const v = res.data!
-    if (!v.config) {
-      switch (v.type) {
-        case TriggerType.SCHEDULE: {
-          const trigger: ScheduleTrigger = {
-            type: TriggerType.SCHEDULE,
-            scheduleOption: {
-              scheduleType: ScheduleType.CRON
-            }
-          }
-          v.config = {
-            trigger: trigger
-          }
-          break
+  }
+
+  switch (tg.type) {
+    case TriggerType.SCHEDULE: {
+      const config = tg.triggerConfig as ScheduleTriggerConfig
+      if (!config.scheduleOption) {
+        config.scheduleOption = {
+          type: ScheduleType.CRON
         }
       }
+      break
     }
-    trigger.value = v
-    console.log(v)
+  }
+}
+
+const save = () => {
+  if (trigger.value.id) {
+    triggerApi.update(trigger.value).then(res => {
+      router.push(`/trigger/edit/${res.data}`)
+    })
+  } else {
+    triggerApi.create(trigger.value).then(res => {
+      router.push(`/trigger/edit/${res.data}`)
+    })
+  }
+}
+
+if (route.params.id) {
+  triggerApi.get(route.params.id).then(res => {
+    const tg = res.data
+    if (!tg) {
+      return
+    }
+    trigger.value = tg
+    console.log(tg)
   })
 }
-load(route.params.id)
 
 </script>

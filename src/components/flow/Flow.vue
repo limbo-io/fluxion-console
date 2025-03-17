@@ -121,7 +121,7 @@ import {FlowEdge, IFlow} from "@/types/flow";
 import flowApi, {FlowUpdateRequest} from "@/api/flowApi";
 import {ElNotification} from "element-plus";
 import {useI18n} from 'vue-i18n'
-import {ExecutorType} from "@/types/executor";
+import {ExecutorType} from "@/types/execute";
 
 const route = useRoute()
 const { t } = useI18n()

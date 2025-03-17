@@ -16,7 +16,7 @@
 import {UUID} from 'uuidjs'
 import {FlowNodeProps, IExecutorNode, IFlowNode, NodeType} from '@/types/node'
 import {XYPosition} from '@vue-flow/core/dist/types/flow'
-import {CustomExecutor, Executor, ExecutorType} from "@/types/executor";
+import {CustomExecutorConfig, ExecutorConfig, ExecutorType} from "@/types/execute";
 
 export const newNodeId = () => {
   return `${UUID.generate()}_node`
@@ -71,13 +71,13 @@ export const newNodeProps = (type: NodeType, position: XYPosition): FlowNodeProp
 
 export const newExecutorNodeProps = (type: ExecutorType, position: XYPosition): FlowNodeProps => {
   const id = newNodeId()
-  let executor: Executor
+  let executor: ExecutorConfig
   switch (type) {
     case ExecutorType.CUSTOM_EXECUTOR: {
       executor = {
         type: type,
         name: ''
-      } as CustomExecutor
+      } as CustomExecutorConfig
       break
     }
   }

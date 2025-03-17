@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
 import {IExecutorNode} from '@/types/node'
-import {ExecutorType} from "@/types/executor";
+import {ExecutorType} from "@/types/execute";
 
 const model = defineModel<IExecutorNode>({required: true})
 </script>

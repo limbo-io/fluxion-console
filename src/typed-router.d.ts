@@ -22,7 +22,6 @@ declare module 'vue-router/auto-routes' {
     '/flow/components/FlowEditCommonItem': RouteRecordInfo<'/flow/components/FlowEditCommonItem', '/flow/components/FlowEditCommonItem', Record<never, never>, Record<never, never>>,
     '/flow/FlowList': RouteRecordInfo<'/flow/FlowList', '/flow/FlowList', Record<never, never>, Record<never, never>>,
     '/trigger/components/ScheduleTriggerForm': RouteRecordInfo<'/trigger/components/ScheduleTriggerForm', '/trigger/components/ScheduleTriggerForm', Record<never, never>, Record<never, never>>,
-    '/trigger/components/TriggerEditCommonItem': RouteRecordInfo<'/trigger/components/TriggerEditCommonItem', '/trigger/components/TriggerEditCommonItem', Record<never, never>, Record<never, never>>,
     '/trigger/components/WebhookTriggerForm': RouteRecordInfo<'/trigger/components/WebhookTriggerForm', '/trigger/components/WebhookTriggerForm', Record<never, never>, Record<never, never>>,
     '/trigger/TriggerEdit': RouteRecordInfo<'/trigger/TriggerEdit', '/trigger/TriggerEdit', Record<never, never>, Record<never, never>>,
     '/trigger/TriggerList': RouteRecordInfo<'/trigger/TriggerList', '/trigger/TriggerList', Record<never, never>, Record<never, never>>,

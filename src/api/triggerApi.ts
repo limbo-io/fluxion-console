@@ -1,30 +1,31 @@
 import http from "@/plugins/axios";
 import {PageRequest, PageResponse, Response} from "@/types/request";
-import {TriggerConfig} from "@/types/trigger";
+import {TriggerConfig, TriggerType} from "@/types/trigger";
+import {ExecuteConfig} from "@/types/execute";
 
 export interface TriggerCreateRequest {
-  refType: string,
-  refId: string,
+  name: string
+  type: TriggerType
   description?: string
+  triggerConfig: TriggerConfig
+  executeConfig: ExecuteConfig
 }
 
 export interface TriggerUpdateRequest {
-  id: string,
+  id: string
+  name: string
+  triggerConfig: TriggerConfig
+  executeConfig: ExecuteConfig
   description?: string
 }
 
-export interface TriggerConfigRequest {
-  id: string,
-  config: TriggerConfig
-}
-
 export interface TriggerView {
-  id: string,
-  type: string,
-  refId: string,
-  refType: string,
-  description?: string,
-  config?: TriggerConfig,
+  id: string
+  name: string
+  type: TriggerType
+  description?: string
+  triggerConfig: TriggerConfig
+  executeConfig: ExecuteConfig
   enabled: boolean
 }
 
@@ -34,9 +35,6 @@ export default {
   },
   update: (request: TriggerUpdateRequest): Promise<Response<void>> => {
     return http.post('/api/v1/trigger/update', request)
-  },
-  publish: (request: TriggerConfigRequest): Promise<Response<TriggerConfigRequest>> => {
-    return http.post('/api/v1/trigger/publish', request)
   },
   page: (data: {} & PageRequest): Promise<PageResponse<TriggerView>> => {
     return http.post('/api/v1/trigger/page', data)

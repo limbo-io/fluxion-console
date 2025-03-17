@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import {CustomExecutor} from "@/types/executor";
+import {CustomExecutor} from "@/types/execute";
 
 const model = defineModel<CustomExecutor>({required: true})
 const disabled = ref<boolean>(false)
