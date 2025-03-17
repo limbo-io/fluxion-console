@@ -19,12 +19,14 @@ const lang: I18nModel = {
   menus: {
     trigger: 'Trigger',
     flow: 'Flow',
-    execution: 'Execution'
+    execution: 'Execution',
+    apps: "Application"
   },
   options: {
     setting: 'Setting',
     save: 'Save',
-    delete: 'Delete'
+    delete: 'Delete',
+    nodes: "Nodes"
   },
   messages: {
     verifyFail: 'Verify Fail',

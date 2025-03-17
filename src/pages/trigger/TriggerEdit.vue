@@ -80,10 +80,12 @@
 <script lang="ts" setup>
 import {useI18n} from 'vue-i18n'
 import triggerApi from "@/api/triggerApi"
+import flowApi from "@/api/flowApi"
 import {ScheduleTriggerConfig, ScheduleType, TriggerConfig, TriggerType} from "@/types/trigger"
 import ScheduleTriggerForm from './components/ScheduleTriggerForm.vue'
 import {ref} from "vue";
 import {useRouter} from "vue-router";
+import {Option} from "@/types/common";
 import {ExecuteConfig, ExecuteType} from "@/types/execute";
 
 const {t} = useI18n()
@@ -118,15 +120,11 @@ const executeTypes = [
   },
 ]
 
-const trigger = ref<ITriggerEditForm>({ triggerConfig: {}, executeConfig: {}})
+const trigger = ref<ITriggerEditForm>({triggerConfig: {}, executeConfig: {}})
 
-const changeTriggerConfig = () => {
+const changeTriggerConfig = (triggerType: TriggerType) => {
   const tg = trigger.value
-  if (!tg.triggerConfig) {
-    tg.triggerConfig = {
-      type: tg.type!
-    }
-  }
+  tg.triggerConfig.type = triggerType
 
   switch (tg.type) {
     case TriggerType.SCHEDULE: {
@@ -139,6 +137,18 @@ const changeTriggerConfig = () => {
       break
     }
   }
+}
+
+const flowRefs = ref<Option[]>([])
+const loadFlowRefs = (keyword?: string) => {
+  flowApi.page({name: keyword}).then(res => {
+    flowRefs.value = res.data?.map(flow => {
+      return {
+        label: flow.name,
+        value: flow.id
+      }
+    }) ?? []
+  })
 }
 
 const save = () => {

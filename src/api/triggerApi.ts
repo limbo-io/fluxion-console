@@ -52,5 +52,19 @@ export default {
         id: id
       }
     })
-  }
+  },
+  enable: (id: string): Promise<Response<void>> => {
+    return http.get('/api/v1/trigger/enable', {
+      params: {
+        id: id
+      }
+    })
+  },
+  disable: (id: string): Promise<Response<void>> => {
+    return http.get('/api/v1/trigger/disable', {
+      params: {
+        id: id
+      }
+    })
+  },
 }

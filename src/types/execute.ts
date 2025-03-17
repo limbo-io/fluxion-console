@@ -1,5 +1,5 @@
 export enum ExecutorType {
-  CUSTOM_EXECUTOR = 'custom_executor',
+  CUSTOM_EXECUTOR = 'custom',
 }
 
 export interface OvertimeOption {

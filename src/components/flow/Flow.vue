@@ -17,7 +17,7 @@
   <el-container>
     <!-- 头部 -->
     <el-header height="64">
-      <el-page-header style="background: white">
+      <el-page-header style="background: white" @back="goBack">
         <template #content>
           <div class="h-center">
             <span class="text-large font-600 mr-3">{{flow.name}}</span>
@@ -124,6 +124,7 @@ import {useI18n} from 'vue-i18n'
 import {ExecutorType} from "@/types/execute";
 
 const route = useRoute()
+const router = useRouter()
 const { t } = useI18n()
 const flowSidebar = ref()
 const nodes = ref<FlowNodeProps[]>([])
@@ -262,6 +263,11 @@ const initCreateMode = () => {
     newNodeProps(NodeType.START, flowInstance.value?.project({x:100, y:100})),
     newNodeProps(NodeType.END, flowInstance.value?.project({x:800, y:100}))
   ]
+}
+
+const goBack = () => {
+  console.log(123)
+  router.back()
 }
 
 const onPaneReady = (vueFlowInstance: VueFlowStore) => {

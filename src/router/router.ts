@@ -4,6 +4,7 @@ import Layout from "@/components/layout/Layout.vue";
 import FlowLIst from "@/pages/flow/FlowList.vue";
 import TriggerList from "@/pages/trigger/TriggerList.vue";
 import TriggerEdit from "@/pages/trigger/TriggerEdit.vue";
+import AppList from "@/pages/app/AppList.vue";
 
 export const routes: RouteRecordRaw[] = [
   // 放到 '/' 匹配前面优先匹配到
@@ -17,6 +18,7 @@ export const routes: RouteRecordRaw[] = [
       {path: '/trigger/edit', component: TriggerEdit},
       {path: '/trigger/edit/:id', component: TriggerEdit},
       {path: '/flow/list', component: FlowLIst},
+      {path: '/app/list', component: AppList},
     ]
   },
 ]

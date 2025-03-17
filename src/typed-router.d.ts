@@ -19,6 +19,7 @@ declare module 'vue-router/auto-routes' {
    */
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
+    '/app/AppList': RouteRecordInfo<'/app/AppList', '/app/AppList', Record<never, never>, Record<never, never>>,
     '/flow/components/FlowEditCommonItem': RouteRecordInfo<'/flow/components/FlowEditCommonItem', '/flow/components/FlowEditCommonItem', Record<never, never>, Record<never, never>>,
     '/flow/FlowList': RouteRecordInfo<'/flow/FlowList', '/flow/FlowList', Record<never, never>, Record<never, never>>,
     '/trigger/components/ScheduleTriggerForm': RouteRecordInfo<'/trigger/components/ScheduleTriggerForm', '/trigger/components/ScheduleTriggerForm', Record<never, never>, Record<never, never>>,

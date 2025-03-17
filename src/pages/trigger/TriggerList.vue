@@ -44,6 +44,12 @@
             {{ scope.row.refId }}
           </template>
         </el-table-column>
+        <el-table-column label="是否启用" align="center" width="100">
+          <template #default="scope">
+            <el-switch v-model="scope.row.enabled" @change="(v: boolean) => changeEnabled(scope.row.id, v)"
+                       active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+          </template>
+        </el-table-column>
         <el-table-column label="操作">
           <template #default="scope">
             <el-button link type="primary" size="small" @click="() => {
@@ -76,6 +82,14 @@ const triggers = ref<TriggerView[]>([])
 
 const deleteTrigger = (id: string) => {
   triggerApi.delete(id)
+}
+
+const changeEnabled = (triggerId: string, enabled: boolean) => {
+  if (enabled) {
+    triggerApi.enable(triggerId)
+  } else {
+    triggerApi.disable(triggerId)
+  }
 }
 
 const page = () => {
