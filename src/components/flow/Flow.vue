@@ -82,7 +82,7 @@
                 </el-button>
               </template>
               <el-row>
-                <el-col :span="12"><el-button @click="addExecutor(ExecutorType.CUSTOM_EXECUTOR)">执行器</el-button></el-col>
+                <el-col :span="12"><el-button @click="addExecutor(ExecutorType.CUSTOM)">执行器</el-button></el-col>
               </el-row>
             </el-popover>
           </div>

@@ -24,6 +24,8 @@ const lang: I18nModel = {
   },
   options: {
     setting: 'Setting',
+    edit: 'Edit',
+    create: 'Create',
     save: 'Save',
     delete: 'Delete',
     nodes: "Nodes"

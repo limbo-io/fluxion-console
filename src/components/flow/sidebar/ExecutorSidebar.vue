@@ -1,5 +1,5 @@
 <template>
-  <template v-if="model.executor.type === ExecutorType.CUSTOM_EXECUTOR">
+  <template v-if="model.executor.type === ExecutorType.CUSTOM">
     <CustomExecutorForm v-model="model.executor"></CustomExecutorForm>
   </template>
 </template>

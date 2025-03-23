@@ -1,3 +1,5 @@
+import {ExecuteConfig} from "@/types/execute";
+
 export enum TriggerType {
   WEBHOOK = 'webhook',
   SCHEDULE = 'schedule',
@@ -10,7 +12,8 @@ export enum ScheduleType {
 }
 
 export interface TriggerConfig {
-  type: TriggerType
+  type?: TriggerType
+  executeConfig: ExecuteConfig
 }
 
 export interface ScheduleOption {
@@ -59,4 +62,12 @@ export interface ScheduleTriggerConfig extends TriggerConfig {
 
 export interface WebhookTriggerConfig extends TriggerConfig {
 
+}
+
+export interface Trigger {
+  id?: string
+  name?: string
+  description?: string
+  config?: TriggerConfig
+  enabled?: boolean
 }

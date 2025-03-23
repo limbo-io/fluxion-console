@@ -17,7 +17,7 @@
 <template>
   <el-container>
     <el-header>
-      <el-button @click="() => {flowCreateDialogOpen = true;}">新建</el-button>
+      <el-button @click="() => {flowEditDialogOpen = true;}">新建</el-button>
     </el-header>
     <el-main>
       <el-table :data="flows" style="width: 100%">
@@ -40,22 +40,12 @@
     </el-main>
   </el-container>
 
-  <el-dialog v-model="flowCreateDialogOpen" title="新建流程" max-width="340">
-    <el-form>
-      <FlowEditCommonItem v-model:name="flow.name" v-model:description="flow.description" />
-    </el-form>
-    <template #footer>
-      <div class="dialog-footer">
-        <el-button type="primary" @click="newFlow">确定</el-button>
-      </div>
-    </template>
-
-  </el-dialog>
+  <FlowEditCommonItem v-model:opened="flowEditDialogOpen" v-model:flow="flow" />
 </template>
 
 <script lang="ts" setup>
 import {useRouter} from "vue-router";
-import flowApi, {FlowCreateRequest} from "@/api/flowApi";
+import flowApi from "@/api/flowApi";
 import FlowEditCommonItem from "@/pages/flow/components/FlowEditCommonItem.vue";
 import {IFlow} from "@/types/flow";
 import {useI18n} from 'vue-i18n'
@@ -63,15 +53,9 @@ import {useI18n} from 'vue-i18n'
 const { t } = useI18n()
 
 const router = useRouter()
-const flowCreateDialogOpen = ref<boolean>(false)
-const flow = ref<FlowCreateRequest>({name: ''})
+const flowEditDialogOpen = ref<boolean>(false)
+const flow = ref<IFlow>({name: ''})
 const flows = ref<IFlow[]>([])
-
-const newFlow = () => {
-  flowApi.create(flow.value).then(res => {
-    router.push(`/flow/edit/${res.data}`)
-  })
-}
 
 const deleteFlow = (id: string) => {
   flowApi.delete(id)

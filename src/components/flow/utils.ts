@@ -73,7 +73,7 @@ export const newExecutorNodeProps = (type: ExecutorType, position: XYPosition): 
   const id = newNodeId()
   let executor: ExecutorConfig
   switch (type) {
-    case ExecutorType.CUSTOM_EXECUTOR: {
+    case ExecutorType.CUSTOM: {
       executor = {
         type: type,
         name: ''

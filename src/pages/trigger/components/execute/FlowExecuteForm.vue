@@ -6,9 +6,9 @@
       filterable
       remote
       reserve-keyword
-      :remote-method="loadFlowRefs"
+      :remote-method="loadFlowOptions"
     >
-      <el-option v-for="item in flowRefs"
+      <el-option v-for="item in flowOptions"
                  :key="item.value"
                  :label="item.label"
                  :value="item.value"
@@ -25,10 +25,10 @@ import flowApi from "@/api/flowApi";
 
 const model = defineModel<FlowExecuteConfig>({required: true})
 
-const flowRefs = ref<Option[]>([])
-const loadFlowRefs = (keyword?: string) => {
+const flowOptions = ref<Option[]>([])
+const loadFlowOptions = (keyword?: string) => {
   flowApi.page({name: keyword}).then(res => {
-    flowRefs.value = res.data?.map(flow => {
+    flowOptions.value = res.data?.map(flow => {
       return {
         label: flow.name,
         value: flow.id

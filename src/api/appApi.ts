@@ -7,7 +7,9 @@ export interface AppView {
 }
 
 export default {
-  page: (data: {} & PageRequest): Promise<PageResponse<AppView>> => {
+  page: (data: {
+    name?: string
+  } & PageRequest): Promise<PageResponse<AppView>> => {
     return http.post('/api/v1/app/page', data)
   },
 }

@@ -1,5 +1,16 @@
 export enum ExecutorType {
-  CUSTOM_EXECUTOR = 'custom',
+  CUSTOM = 'custom',
+}
+
+export enum ExecuteMode {
+  STANDALONE = 'standalone',
+  BROADCAST = 'broadcast',
+  MAP_REDUCE = 'map_reduce',
+}
+
+export enum ExecutableType {
+  FLOW = 'flow',
+  EXECUTOR = 'executor',
 }
 
 export interface OvertimeOption {
@@ -16,7 +27,8 @@ export interface DispatchOption {
 
 export interface ExecutorConfig {
   type: ExecutorType
-  appId: string,
+  appId: string
+  executeMode: ExecuteMode
   dispatchOption?: DispatchOption
 }
 
@@ -24,13 +36,10 @@ export interface CustomExecutorConfig extends ExecutorConfig {
   name: string
 }
 
-export enum ExecuteType {
-  FLOW = 'flow',
-  EXECUTOR = 'executor',
-}
-
 export interface ExecuteConfig {
-  type: ExecuteType
+  type?: ExecutableType
+  overtimeOption?: OvertimeOption
+  retryOption?: RetryOption
 }
 
 export interface FlowExecuteConfig extends ExecuteConfig {
@@ -39,8 +48,6 @@ export interface FlowExecuteConfig extends ExecuteConfig {
 
 export interface ExecutorExecuteConfig extends ExecuteConfig {
   executor: ExecutorConfig
-  overtimeOption?: OvertimeOption
-  retryOption?: RetryOption
 }
 
 

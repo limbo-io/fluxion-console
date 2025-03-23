@@ -33,7 +33,7 @@ export interface FlowConfig {
 
 export interface IFlow {
 
-  id: string
+  id?: string
 
   name: string
 
