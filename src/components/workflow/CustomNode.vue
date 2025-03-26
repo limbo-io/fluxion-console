@@ -27,7 +27,7 @@
 
 <script lang="ts" setup>
 import {FlowNodeProps, IEndNode, IExecutorNode, IStartNode, NodeType} from '@/types/node'
-import ExecutorNode from "@/components/flow/node/ExecutorNode.vue";
+import ExecutorNode from "@/components/workflow/node/ExecutorNode.vue";
 
 const props = defineProps<FlowNodeProps>()
 </script>

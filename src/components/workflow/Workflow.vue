@@ -113,12 +113,12 @@
 <script lang="ts" setup>
 import {ConnectionMode, MarkerType, Panel, useVueFlow, VueFlow, VueFlowStore} from "@vue-flow/core";
 import {Background} from '@vue-flow/background'
-import {newExecutorNodeProps, newNodeProps} from '@/components/flow/utils'
+import {newExecutorNodeProps, newNodeProps} from '@/components/workflow/utils'
 import {FlowNodeProps, IFlowNode, NodeExtendKeys, NodeType} from '@/types/node'
 import {SquarePen, Ellipsis, Plus} from "lucide-vue-next";
 import type {Edge} from "@vue-flow/core/dist/types/edge";
-import {FlowEdge, IFlow} from "@/types/flow";
-import flowApi, {FlowUpdateRequest} from "@/api/flowApi";
+import {FlowEdge, IFlow} from "@/types/workflow";
+import flowApi, {FlowUpdateRequest} from "@/api/workflowApi";
 import {ElNotification} from "element-plus";
 import {useI18n} from 'vue-i18n'
 import {ExecutorType} from "@/types/execute";

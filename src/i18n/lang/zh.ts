@@ -18,7 +18,7 @@ import {I18nModel} from "@/i18n/types";
 const lang: I18nModel = {
   menus: {
     trigger: '触发器',
-    flow: '流程',
+    workflow: '工作流',
     execution: '执行记录',
     apps: "应用管理"
   },

@@ -40,14 +40,14 @@
     </el-main>
   </el-container>
 
-  <FlowEditCommonItem v-model:opened="flowEditDialogOpen" v-model:flow="flow" />
+  <WorkflowEditCommonItem v-model:opened="flowEditDialogOpen" v-model:flow="flow" />
 </template>
 
 <script lang="ts" setup>
 import {useRouter} from "vue-router";
-import flowApi from "@/api/flowApi";
-import FlowEditCommonItem from "@/pages/flow/components/FlowEditCommonItem.vue";
-import {IFlow} from "@/types/flow";
+import flowApi from "@/api/workflowApi";
+import WorkflowEditCommonItem from "@/pages/workflow/components/WorkflowEditCommonItem.vue";
+import {IFlow} from "@/types/workflow";
 import {useI18n} from 'vue-i18n'
 
 const { t } = useI18n()

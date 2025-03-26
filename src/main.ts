@@ -12,7 +12,7 @@ import { createApp } from 'vue'
 // Style
 import '@vue-flow/core/dist/style.css';
 import '@/styles/main.scss';
-import '@/styles/flow.scss';
+import '@/styles/workflow.scss';
 import "element-plus/dist/index.css";
 
 const app = createApp(App)

@@ -38,8 +38,8 @@
 </template>
 
 <script lang="ts" setup>
-import flowApi from "@/api/flowApi";
-import {IFlow} from "@/types/flow";
+import flowApi from "@/api/workflowApi";
+import {IFlow} from "@/types/workflow";
 import {useI18n} from 'vue-i18n'
 
 const { t } = useI18n()

@@ -18,7 +18,7 @@ import {I18nModel} from "@/i18n/types";
 const lang: I18nModel = {
   menus: {
     trigger: 'Trigger',
-    flow: 'Flow',
+    workflow: 'Workflow',
     execution: 'Execution',
     apps: "Application"
   },

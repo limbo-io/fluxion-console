@@ -15,15 +15,15 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: '000002',
-    name: 'menus.flow',
+    name: 'menus.workflow',
     icon: 'calendar-days',
-    route: '/flow/list',
+    route: '/workflow/list',
   },
   {
     id: '000003',
     name: 'menus.execution',
     icon: 'history',
-    route: '/flow/edit',
+    route: '/workflow/edit',
   },
   {
     id: '000004',

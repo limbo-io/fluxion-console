@@ -21,7 +21,7 @@
 import {FlowExecuteConfig} from "@/types/execute";
 import {ref} from "vue";
 import {Option} from "@/types/common";
-import flowApi from "@/api/flowApi";
+import flowApi from "@/api/workflowApi";
 
 const model = defineModel<FlowExecuteConfig>({required: true})
 
