@@ -26,12 +26,12 @@ export interface ScheduleOption {
    * 调度开始时间
    * @format date-time
    */
-  startTime?: string;
+  startTime?: number;
   /**
    * 调度结束时间
    * @format date-time
    */
-  endTime?: string;
+  endTime?: number;
   /**
    * 延迟时间
    * 延迟时间 -- 当前时间多久后调度

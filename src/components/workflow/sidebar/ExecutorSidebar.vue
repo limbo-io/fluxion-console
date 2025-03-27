@@ -1,12 +1,9 @@
 <template>
-  <template v-if="model.executor.type === ExecutorType.CUSTOM">
-    <CustomExecutorForm v-model="model.executor"></CustomExecutorForm>
-  </template>
+  <ExecutorConfigForm v-model="model.executor" />
 </template>
 
 <script lang="ts" setup>
 import {IExecutorNode} from '@/types/node'
-import {ExecutorType} from "@/types/execute";
 
 const model = defineModel<IExecutorNode>({required: true})
 </script>

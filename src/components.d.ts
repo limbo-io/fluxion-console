@@ -9,15 +9,13 @@ declare module 'vue' {
   export interface GlobalComponents {
     ControlPanel: typeof import('@/components/workflow/ControlPanel.vue')['default']
     CustomExecutorConfigForm: typeof import('./components/executor/CustomExecutorConfigForm.vue')['default']
-    CustomExecutorForm: typeof import('./components/workflow/sidebar/executor/CustomExecutorForm.vue')['default']
-    CustomNode: typeof import('./components/workflow/CustomNode.vue')['default']
-    CustomSidebar: typeof import('./components/workflow/CustomSidebar.vue')['default']
+    FNode: typeof import('./components/workflow/FNode.vue')['default']
+    FSidebar: typeof import('./components/workflow/FSidebar.vue')['default']
     EndNode: typeof import('./components/workflow/node/EndNode.vue')['default']
     ExecutorConfigForm: typeof import('./components/executor/ExecutorConfigForm.vue')['default']
     ExecutorExecuteForm: typeof import('./pages/trigger/components/execute/ExecutorExecuteForm.vue')['default']
     ExecutorNode: typeof import('./components/workflow/node/ExecutorNode.vue')['default']
     ExecutorSidebar: typeof import('./components/workflow/sidebar/ExecutorSidebar.vue')['default']
-    FlowExecuteForm: typeof import('./pages/trigger/components/execute/FlowExecuteForm.vue')['default']
     Layout: typeof import('./components/layout/Layout.vue')['default']
     Main: typeof import('./components/layout/Main.vue')['default']
     Menu: typeof import('./components/layout/Menu.vue')['default']
@@ -31,5 +29,6 @@ declare module 'vue' {
     WebhookTriggerForm: typeof import('./pages/trigger/components/trigger/WebhookTriggerForm.vue')['default']
     WorkerExecutorNode: typeof import('@/components/workflow/node/ExecutorNode.vue')['default']
     Workflow: typeof import('./components/workflow/Workflow.vue')['default']
+    WorkflowExecuteForm: typeof import('./pages/trigger/components/execute/WorkflowExecuteForm.vue')['default']
   }
 }

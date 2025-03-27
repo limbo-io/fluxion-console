@@ -9,7 +9,7 @@ export enum ExecuteMode {
 }
 
 export enum ExecutableType {
-  FLOW = 'flow',
+  WORKFLOW = 'workflow',
   EXECUTOR = 'executor',
 }
 
@@ -42,8 +42,8 @@ export interface ExecuteConfig {
   retryOption?: RetryOption
 }
 
-export interface FlowExecuteConfig extends ExecuteConfig {
-  flowId: string
+export interface WorkflowExecuteConfig extends ExecuteConfig {
+  workflowId: string
 }
 
 export interface ExecutorExecuteConfig extends ExecuteConfig {

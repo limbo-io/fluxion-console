@@ -8,4 +8,4 @@ export interface Option {
   disabled?: boolean;
 }
 
-export const TIME_FOREVER =  "2999-12-01 00:00:00"
+export const TIME_FOREVER = 32500972800000 // "2999-12-01 00:00:00"

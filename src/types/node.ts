@@ -12,7 +12,7 @@ export enum NodeExtendKeys {
   POSITION = "position"
 }
 
-export interface IFlowNode {
+export interface IWorkflowNode {
   /**
    * 唯一标识
    */
@@ -32,22 +32,22 @@ export interface IFlowNode {
 }
 
 export interface FlowNodeProps extends Node {
-  data: IFlowNode
+  data: IWorkflowNode
 }
 
 /**
  * @deprecated
  */
-export interface ITriggerNode extends IFlowNode {
+export interface ITriggerNode extends IWorkflowNode {
   triggers: TriggerConfig[]
 }
 
-export interface IStartNode extends IFlowNode {
+export interface IStartNode extends IWorkflowNode {
 }
 
-export interface IEndNode extends IFlowNode {
+export interface IEndNode extends IWorkflowNode {
 }
 
-export interface IExecutorNode extends IFlowNode {
+export interface IExecutorNode extends IWorkflowNode {
   executor: ExecutorConfig
 }

@@ -1,6 +1,6 @@
 import http from "@/plugins/axios";
 import {PageRequest, PageResponse, Response} from "@/types/request";
-import {FlowConfig, IFlow} from "@/types/workflow";
+import {WorkflowConfig, IWorkflow} from "@/types/workflow";
 import {ValidateSuppressInfo} from "@/types/common";
 
 export interface FlowCreateRequest {
@@ -14,7 +14,7 @@ export interface FlowUpdateRequest extends FlowCreateRequest {
 
 export interface FlowConfigRequest {
   id: string,
-  config: FlowConfig
+  config: WorkflowConfig
 }
 
 export interface FlowPublishResponse {
@@ -37,10 +37,10 @@ export default {
   },
   page: (data: {
     name?: string
-  } & PageRequest): Promise<PageResponse<IFlow>> => {
+  } & PageRequest): Promise<PageResponse<IWorkflow>> => {
     return http.post('/api/v1/workflow/page', data)
   },
-  get: (id: string): Promise<Response<IFlow>> => {
+  get: (id: string): Promise<Response<IWorkflow>> => {
     return http.get('/api/v1/workflow/get', {
       params: {
         id: id

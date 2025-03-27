@@ -1,14 +1,14 @@
 <template>
   <el-form-item label="流程" label-width="100px" :required="true">
     <el-select
-      v-model="model.flowId"
+      v-model="model.workflowId"
       placeholder="请选择"
       filterable
       remote
       reserve-keyword
       :remote-method="loadFlowOptions"
     >
-      <el-option v-for="item in flowOptions"
+      <el-option v-for="item in workflowOptions"
                  :key="item.value"
                  :label="item.label"
                  :value="item.value"
@@ -18,20 +18,20 @@
 </template>
 
 <script lang="ts" setup>
-import {FlowExecuteConfig} from "@/types/execute";
+import {WorkflowExecuteConfig} from "@/types/execute";
 import {ref} from "vue";
 import {Option} from "@/types/common";
-import flowApi from "@/api/workflowApi";
+import workflowApi from "@/api/workflowApi";
 
-const model = defineModel<FlowExecuteConfig>({required: true})
+const model = defineModel<WorkflowExecuteConfig>({required: true})
 
-const flowOptions = ref<Option[]>([])
+const workflowOptions = ref<Option[]>([])
 const loadFlowOptions = (keyword?: string) => {
-  flowApi.page({name: keyword}).then(res => {
-    flowOptions.value = res.data?.map(flow => {
+  workflowApi.page({name: keyword}).then(res => {
+    workflowOptions.value = res.data?.map(workflow => {
       return {
-        label: flow.name,
-        value: flow.id
+        label: workflow.name,
+        value: workflow.id
       }
     }) ?? []
   })

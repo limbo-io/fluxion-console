@@ -35,7 +35,7 @@
         </el-table-column>
         <el-table-column label="基本信息" width="180">
           <template #default="scope">
-            <template v-if="scope.row.refType === ExecutableType.FLOW">
+            <template v-if="scope.row.refType === ExecutableType.WORKFLOW">
               {{ '流程' }}
             </template>
             <template v-else-if="scope.row.refType === ExecutableType.EXECUTOR">

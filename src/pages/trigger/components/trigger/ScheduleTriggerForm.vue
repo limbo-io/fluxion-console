@@ -16,12 +16,12 @@
 
 <template>
   <el-form-item label="调度开始时间" :required="true">
-    <el-date-picker v-model="model.scheduleOption.startTime" type="datetime" value-format="YYYY-MM-DD HH:mm:ss"
+    <el-date-picker v-model="model.scheduleOption.startTime" type="datetime"
                     placeholder="请选择" :clearable="false" :disabled-date="disabledStartTime"
     />
   </el-form-item>
   <el-form-item label="调度结束时间">
-    <el-date-picker v-model="model.scheduleOption.endTime" type="datetime" value-format="YYYY-MM-DD HH:mm:ss"
+    <el-date-picker v-model="model.scheduleOption.endTime" type="datetime"
                     placeholder="永不结束" :disabled-date="disabledEndTime"
     />
   </el-form-item>

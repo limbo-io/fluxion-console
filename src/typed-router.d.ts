@@ -22,7 +22,7 @@ declare module 'vue-router/auto-routes' {
     '/app/AppList': RouteRecordInfo<'/app/AppList', '/app/AppList', Record<never, never>, Record<never, never>>,
     '/trigger/components/execute/ExecuteConfigForm': RouteRecordInfo<'/trigger/components/execute/ExecuteConfigForm', '/trigger/components/execute/ExecuteConfigForm', Record<never, never>, Record<never, never>>,
     '/trigger/components/execute/ExecutorExecuteForm': RouteRecordInfo<'/trigger/components/execute/ExecutorExecuteForm', '/trigger/components/execute/ExecutorExecuteForm', Record<never, never>, Record<never, never>>,
-    '/trigger/components/execute/FlowExecuteForm': RouteRecordInfo<'/trigger/components/execute/FlowExecuteForm', '/trigger/components/execute/FlowExecuteForm', Record<never, never>, Record<never, never>>,
+    '/trigger/components/execute/WorkflowExecuteForm': RouteRecordInfo<'/trigger/components/execute/WorkflowExecuteForm', '/trigger/components/execute/WorkflowExecuteForm', Record<never, never>, Record<never, never>>,
     '/trigger/components/trigger/ScheduleTriggerForm': RouteRecordInfo<'/trigger/components/trigger/ScheduleTriggerForm', '/trigger/components/trigger/ScheduleTriggerForm', Record<never, never>, Record<never, never>>,
     '/trigger/components/trigger/TriggerConfigForm': RouteRecordInfo<'/trigger/components/trigger/TriggerConfigForm', '/trigger/components/trigger/TriggerConfigForm', Record<never, never>, Record<never, never>>,
     '/trigger/components/trigger/WebhookTriggerForm': RouteRecordInfo<'/trigger/components/trigger/WebhookTriggerForm', '/trigger/components/trigger/WebhookTriggerForm', Record<never, never>, Record<never, never>>,

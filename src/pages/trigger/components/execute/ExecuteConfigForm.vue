@@ -24,8 +24,8 @@
       />
     </el-select>
   </el-form-item>
-  <template v-if="model.type === ExecutableType.FLOW">
-    <FlowExecuteForm v-model="model as FlowExecuteConfig" />
+  <template v-if="model.type === ExecutableType.WORKFLOW">
+    <WorkflowExecuteForm v-model="model as WorkflowExecuteConfig" />
   </template>
   <template v-else-if="model.type === ExecutableType.EXECUTOR">
     <ExecutorExecuteForm v-model="model as ExecutorExecuteConfig" />
@@ -39,9 +39,9 @@ import {
   ExecuteMode,
   ExecutorExecuteConfig,
   ExecutorType,
-  FlowExecuteConfig
+  WorkflowExecuteConfig
 } from "@/types/execute";
-import FlowExecuteForm from "@/pages/trigger/components/execute/FlowExecuteForm.vue";
+import WorkflowExecuteForm from "@/pages/trigger/components/execute/WorkflowExecuteForm.vue";
 import ExecutorExecuteForm from "@/pages/trigger/components/execute/ExecutorExecuteForm.vue";
 
 const model = defineModel<ExecuteConfig>({required: true})
@@ -53,7 +53,7 @@ const executableTypes = [
   },
   {
     label: '流程',
-    value: ExecutableType.FLOW,
+    value: ExecutableType.WORKFLOW,
   },
 ]
 
