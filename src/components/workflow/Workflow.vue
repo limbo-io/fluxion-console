@@ -30,7 +30,7 @@
               <el-icon class="el-icon--right"><Ellipsis /></el-icon>
             </el-tooltip>
             <el-icon class="el-icon--right" @click="() => {saveDialogOpen = true; saveDialogForm = {
-                id: workflow.id,
+                id: workflow.id ?? '',
                 name: workflow.name,
                 description: workflow.description
               }}"><SquarePen /></el-icon>
@@ -266,7 +266,6 @@ const initCreateMode = () => {
 }
 
 const goBack = () => {
-  console.log(123)
   router.back()
 }
 

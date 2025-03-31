@@ -1,8 +1,28 @@
 import {ExecuteConfig} from "@/types/execute";
+import {Option} from "@/types/common";
 
 export enum TriggerType {
   WEBHOOK = 'webhook',
   SCHEDULE = 'schedule',
+}
+
+export class TriggerTypeUtils {
+
+  static desc(type: TriggerType): string {
+    switch (type) {
+      case TriggerType.SCHEDULE:
+        return "调度"
+      default:
+        return ""
+    }
+  }
+
+  static option(type: TriggerType): Option {
+    return {
+      label: this.desc(type),
+      value: type
+    }
+  }
 }
 
 export enum ScheduleType {

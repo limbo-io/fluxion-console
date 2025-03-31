@@ -17,10 +17,10 @@ import {I18nModel} from "@/i18n/types";
 
 const lang: I18nModel = {
   menus: {
-    trigger: 'Trigger',
-    workflow: 'Workflow',
-    execution: 'Execution',
-    apps: "Application"
+    triggers: 'Triggers',
+    workflows: 'Workflows',
+    executions: 'Executions',
+    apps: "Applications"
   },
   options: {
     setting: 'Setting',
@@ -28,7 +28,8 @@ const lang: I18nModel = {
     create: 'Create',
     save: 'Save',
     delete: 'Delete',
-    nodes: "Nodes"
+    nodes: "Nodes",
+    detail: "Detail",
   },
   messages: {
     verifyFail: 'Verify Fail',
