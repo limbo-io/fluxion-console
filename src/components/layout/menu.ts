@@ -22,7 +22,13 @@ export const menuItems: MenuItem[] = [
   {
     id: '000003',
     name: 'menus.execution',
-    icon: 'calendar-days',
+    icon: 'history',
     route: '/flow/edit',
+  },
+  {
+    id: '000004',
+    name: 'menus.apps',
+    icon: 'app',
+    route: '/app/list',
   },
 ]

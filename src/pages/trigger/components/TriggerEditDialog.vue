@@ -15,18 +15,18 @@
   -->
 
 <template>
-  <el-dialog v-model="opened" :title="(flow.id ? t('options.edit') : t('options.create')) + '流程'" max-width="340">
+  <el-dialog v-model="opened" :title="(trigger.id ? t('options.edit') : t('options.create')) + '触发器'" max-width="340">
     <el-form>
       <el-form-item label="名称" label-width="100px" :required="true">
-        <el-input v-model="flow.name"/>
+        <el-input v-model="trigger.name"/>
       </el-form-item>
       <el-form-item label="描述" label-width="100px">
-        <el-input v-model="flow.description"/>
+        <el-input v-model="trigger.description"/>
       </el-form-item>
     </el-form>
     <template #footer>
       <div class="dialog-footer">
-        <template v-if="flow.id">
+        <template v-if="trigger.id">
           <el-button type="primary" @click="update">{{ t('options.edit')}}</el-button>
         </template>
         <template v-else>
@@ -38,30 +38,31 @@
 </template>
 
 <script lang="ts" setup>
-import flowApi from "@/api/flowApi";
-import {IFlow} from "@/types/flow";
+
+import {Trigger} from "@/types/trigger";
+import triggerApi from "@/api/triggerApi";
 import {useI18n} from 'vue-i18n'
 
 const { t } = useI18n()
 const router = useRouter()
 
 const opened = defineModel('opened')
-const flow = defineModel<IFlow>('flow', {required: true})
+const trigger = defineModel<Trigger>('trigger', {required: true})
 
 const create = () => {
-  flowApi.create({
-    name: flow.value.name,
-    description: flow.value.description,
+  triggerApi.create({
+    name: trigger.value.name ?? "",
+    description: trigger.value.description
   }).then(res => {
-    router.push(`/flow/edit/${res.data}`)
+    router.push(`/trigger/edit/${res.data}`)
   })
 }
 
 const update = () => {
-  flowApi.update({
-    id: flow.value.id ?? "",
-    name: flow.value.name,
-    description: flow.value.description,
+  triggerApi.update({
+    id: trigger.value.id ?? "",
+    name: trigger.value.name ?? "",
+    description: trigger.value.description
   }).then(res => {
     opened.value = false
   })

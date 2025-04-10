@@ -1,6 +1,9 @@
-import { CalendarDays, Clock } from 'lucide-vue-next'
+// https://lucide.dev/
+import { CalendarDays, Clock, AppWindow, History } from 'lucide-vue-next'
 
 export const iconMapping = {
   "calendar-days": CalendarDays,
-  "clock": Clock
+  "clock": Clock,
+  "app": AppWindow,
+  "history": History
 }

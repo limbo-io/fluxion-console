@@ -1,31 +1,21 @@
 import http from "@/plugins/axios";
 import {PageRequest, PageResponse, Response} from "@/types/request";
-import {TriggerConfig} from "@/types/trigger";
+import {Trigger, TriggerConfig} from "@/types/trigger";
 
 export interface TriggerCreateRequest {
-  refType: string,
-  refId: string,
+  name: string
   description?: string
 }
 
 export interface TriggerUpdateRequest {
-  id: string,
+  id: string
+  name: string
   description?: string
 }
 
 export interface TriggerConfigRequest {
-  id: string,
-  config: TriggerConfig
-}
-
-export interface TriggerView {
-  id: string,
-  type: string,
-  refId: string,
-  refType: string,
-  description?: string,
-  config?: TriggerConfig,
-  enabled: boolean
+  id?: string
+  config?: TriggerConfig
 }
 
 export default {
@@ -35,13 +25,16 @@ export default {
   update: (request: TriggerUpdateRequest): Promise<Response<void>> => {
     return http.post('/api/v1/trigger/update', request)
   },
-  publish: (request: TriggerConfigRequest): Promise<Response<TriggerConfigRequest>> => {
+  draft: (request: TriggerConfigRequest): Promise<Response<void>> => {
+    return http.post('/api/v1/trigger/draft', request)
+  },
+  publish: (request: TriggerConfigRequest): Promise<Response<void>> => {
     return http.post('/api/v1/trigger/publish', request)
   },
-  page: (data: {} & PageRequest): Promise<PageResponse<TriggerView>> => {
+  page: (data: {} & PageRequest): Promise<PageResponse<Trigger>> => {
     return http.post('/api/v1/trigger/page', data)
   },
-  get: (id: string): Promise<Response<TriggerView>> => {
+  get: (id?: string): Promise<Response<Trigger>> => {
     return http.get('/api/v1/trigger/get', {
       params: {
         id: id
@@ -54,5 +47,19 @@ export default {
         id: id
       }
     })
-  }
+  },
+  enable: (id: string): Promise<Response<void>> => {
+    return http.get('/api/v1/trigger/enable', {
+      params: {
+        id: id
+      }
+    })
+  },
+  disable: (id: string): Promise<Response<void>> => {
+    return http.get('/api/v1/trigger/disable', {
+      params: {
+        id: id
+      }
+    })
+  },
 }

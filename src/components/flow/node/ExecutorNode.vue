@@ -27,6 +27,7 @@
         </el-icon>
       </div>
     </template>
+    <span>{{ model.executor.name }}</span>
   </el-card>
   <Handle :id="`${model.id}-target`" :position="Position.Left" type="target"/>
   <Handle :id="`${model.id}-source`" :position="Position.Right" type="source"/>

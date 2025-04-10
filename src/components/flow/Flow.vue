@@ -17,7 +17,7 @@
   <el-container>
     <!-- 头部 -->
     <el-header height="64">
-      <el-page-header style="background: white">
+      <el-page-header style="background: white" @back="goBack">
         <template #content>
           <div class="h-center">
             <span class="text-large font-600 mr-3">{{flow.name}}</span>
@@ -82,7 +82,7 @@
                 </el-button>
               </template>
               <el-row>
-                <el-col :span="12"><el-button @click="addExecutor(ExecutorType.CUSTOM_EXECUTOR)">执行器</el-button></el-col>
+                <el-col :span="12"><el-button @click="addExecutor(ExecutorType.CUSTOM)">执行器</el-button></el-col>
               </el-row>
             </el-popover>
           </div>
@@ -121,9 +121,10 @@ import {FlowEdge, IFlow} from "@/types/flow";
 import flowApi, {FlowUpdateRequest} from "@/api/flowApi";
 import {ElNotification} from "element-plus";
 import {useI18n} from 'vue-i18n'
-import {ExecutorType} from "@/types/executor";
+import {ExecutorType} from "@/types/execute";
 
 const route = useRoute()
+const router = useRouter()
 const { t } = useI18n()
 const flowSidebar = ref()
 const nodes = ref<FlowNodeProps[]>([])
@@ -262,6 +263,11 @@ const initCreateMode = () => {
     newNodeProps(NodeType.START, flowInstance.value?.project({x:100, y:100})),
     newNodeProps(NodeType.END, flowInstance.value?.project({x:800, y:100}))
   ]
+}
+
+const goBack = () => {
+  console.log(123)
+  router.back()
 }
 
 const onPaneReady = (vueFlowInstance: VueFlowStore) => {

@@ -17,7 +17,7 @@
 <template>
   <el-container>
     <el-header>
-      <el-button @click="() => {createDialogOpen = true;}">新建</el-button>
+      <el-button @click="() => {triggerEditDialogOpen = true;}">新建</el-button>
     </el-header>
     <el-main>
       <el-table :data="triggers" style="width: 100%">
@@ -25,7 +25,6 @@
         <el-table-column prop="description" label="描述" width="180"/>
         <el-table-column label="触发方式" width="180">
           <template #default="scope">
-
             <template v-if="scope.row.type === TriggerType.SCHEDULE">
               {{ '调度触发' }}
             </template>
@@ -34,18 +33,28 @@
             </template>
           </template>
         </el-table-column>
-        <el-table-column label="执行方式" width="180">
+        <el-table-column label="基本信息" width="180">
           <template #default="scope">
-            <template v-if="scope.row.config?.type === TriggerType.SCHEDULE">
-              {{ '调度触发' }}
+            <template v-if="scope.row.refType === ExecutableType.FLOW">
+              {{ '流程' }}
             </template>
-            <template v-else-if="scope.row.config?.type === TriggerType.WEBHOOK">
-              {{ 'webhook' }}
+            <template v-else-if="scope.row.refType === ExecutableType.EXECUTOR">
+              {{ '执行器' }}
             </template>
+            {{ scope.row.refId }}
+          </template>
+        </el-table-column>
+        <el-table-column label="是否启用" align="center" width="100">
+          <template #default="scope">
+            <el-switch v-model="scope.row.enabled" @change="(v: boolean) => changeEnabled(scope.row.id, v)"
+                       active-color="#13ce66" inactive-color="#ff4949"></el-switch>
           </template>
         </el-table-column>
         <el-table-column label="操作">
           <template #default="scope">
+            <el-button link type="primary" size="small" @click="() => {trigger=scope.row;triggerEditDialogOpen = true;}">
+              {{ t('options.edit') }}
+            </el-button>
             <el-button link type="primary" size="small" @click="() => {
               router.push(`/trigger/edit/${scope.row.id}`)
             }">
@@ -60,41 +69,34 @@
     </el-main>
   </el-container>
 
-  <el-dialog v-model="createDialogOpen" title="新建" max-width="340">
-    <el-form>
-      <TriggerEditCommonItem v-model="trigger"/>
-    </el-form>
-    <template #footer>
-      <div class="dialog-footer">
-        <el-button type="primary" @click="createTrigger">确定</el-button>
-      </div>
-    </template>
-
-  </el-dialog>
+  <TriggerEditDialog v-model:opened="triggerEditDialogOpen" v-model:trigger="trigger"/>
 </template>
 
 <script lang="ts" setup>
 import {useRouter} from "vue-router";
 import {useI18n} from 'vue-i18n'
-import {TriggerType} from "@/types/trigger";
-import triggerApi, {TriggerCreateRequest, TriggerView} from "@/api/triggerApi";
-import TriggerEditCommonItem from "@/pages/trigger/components/TriggerEditCommonItem.vue";
+import {Trigger, TriggerType} from "@/types/trigger";
+import triggerApi from "@/api/triggerApi";
+import {ExecutableType} from "@/types/execute";
+import TriggerEditDialog from "@/pages/trigger/components/TriggerEditDialog.vue";
 
 const {t} = useI18n()
-
 const router = useRouter()
-const createDialogOpen = ref<boolean>(false)
-const trigger = ref<TriggerCreateRequest>({refId: '', refType: ''})
-const triggers = ref<TriggerView[]>([])
 
-const createTrigger = () => {
-  triggerApi.create(trigger.value).then(res => {
-    router.push(`/trigger/edit/${res.data}`)
-  })
-}
+const triggers = ref<Trigger[]>([])
+const triggerEditDialogOpen = ref<boolean>(false)
+const trigger = ref<Trigger>({name: ''})
 
 const deleteTrigger = (id: string) => {
   triggerApi.delete(id)
+}
+
+const changeEnabled = (triggerId: string, enabled: boolean) => {
+  if (enabled) {
+    triggerApi.enable(triggerId)
+  } else {
+    triggerApi.disable(triggerId)
+  }
 }
 
 const page = () => {
