@@ -47,5 +47,5 @@
     "vue-router": "^4.4.0",
     "vue-tsc": "^2.0.26"
   },
-  "repository": "git@github.com:Fluxion-io/fluxion-console.git"
+  "repository": "git@github.com:limbo-io/fluxion-console.git"
 }
