@@ -20,19 +20,19 @@
       <el-page-header style="background: white" @back="goBack">
         <template #content>
           <div class="h-center">
-            <span class="text-large font-600 mr-3">{{flow.name}}</span>
+            <span class="text-large font-600 mr-3">{{ workflow.name }}</span>
             <el-tooltip
               class="box-item"
               effect="dark"
               placement="bottom-start"
-              :content="flow.description"
+              :content="workflow.description"
             >
               <el-icon class="el-icon--right"><Ellipsis /></el-icon>
             </el-tooltip>
             <el-icon class="el-icon--right" @click="() => {saveDialogOpen = true; saveDialogForm = {
-                id: flow.id,
-                name: flow.name,
-                description: flow.description
+                id: workflow.id ?? '',
+                name: workflow.name,
+                description: workflow.description
               }}"><SquarePen /></el-icon>
           </div>
         </template>
@@ -62,7 +62,7 @@
         <Background :gap="16" pattern-color="#aaa"/>
         <!-- 节点 -->
         <template #node-custom="nodeProps">
-          <CustomNode
+          <FNode
             :id="nodeProps.id"
             :data="nodeProps.data"
             :position="nodeProps.position"
@@ -91,7 +91,7 @@
     </el-main>
   </el-container>
   <!-- 侧边栏 -->
-  <CustomSidebar ref="flowSidebar"/>
+  <FSidebar ref="flowSidebar"/>
   <!-- 编辑弹窗 -->
   <el-dialog v-model="saveDialogOpen" title="编辑流程" max-width="340">
     <el-form>
@@ -113,12 +113,12 @@
 <script lang="ts" setup>
 import {ConnectionMode, MarkerType, Panel, useVueFlow, VueFlow, VueFlowStore} from "@vue-flow/core";
 import {Background} from '@vue-flow/background'
-import {newExecutorNodeProps, newNodeProps} from '@/components/flow/utils'
-import {FlowNodeProps, IFlowNode, NodeExtendKeys, NodeType} from '@/types/node'
+import {newExecutorNodeProps, newNodeProps} from '@/components/workflow/utils'
+import {FlowNodeProps, IWorkflowNode, NodeExtendKeys, NodeType} from '@/types/node'
 import {SquarePen, Ellipsis, Plus} from "lucide-vue-next";
 import type {Edge} from "@vue-flow/core/dist/types/edge";
-import {FlowEdge, IFlow} from "@/types/flow";
-import flowApi, {FlowUpdateRequest} from "@/api/flowApi";
+import {WorkflowEdge, IWorkflow} from "@/types/workflow";
+import flowApi, {FlowUpdateRequest} from "@/api/workflowApi";
 import {ElNotification} from "element-plus";
 import {useI18n} from 'vue-i18n'
 import {ExecutorType} from "@/types/execute";
@@ -131,7 +131,7 @@ const nodes = ref<FlowNodeProps[]>([])
 const edges = ref<Edge[]>([])
 const flowInstance = ref<VueFlowStore>()
 const { toObject, addEdges } = useVueFlow()
-const flow = ref<IFlow>({
+const workflow = ref<IWorkflow>({
   id: '',
   name: ''
 })
@@ -149,7 +149,7 @@ const loadFlow = (id: string) => {
       return
     }
     console.log(f)
-    flow.value = f
+    workflow.value = f
     if (f.config) {
       nodes.value = f.config.nodes.map(n => {
         return {
@@ -212,7 +212,7 @@ const getFlowData = () => {
   const vf = toObject()
   console.log('vueflow', vf)
   const nodes = vf.nodes.map(n => {
-    const data = n.data as IFlowNode
+    const data = n.data as IWorkflowNode
     data.extension[NodeExtendKeys.POSITION] = n.position
     return data
   })
@@ -222,7 +222,7 @@ const getFlowData = () => {
       sourceHandleId: e.sourceHandle ?? '',
       targetNodeId: e.target,
       targetHandleId: e.targetHandle ?? ''
-    } as FlowEdge
+    } as WorkflowEdge
   })
   return {
     nodes: nodes,
@@ -233,13 +233,13 @@ const getFlowData = () => {
 const flowDraft = () => {
   const flowData = getFlowData()
   console.log('flowDraft', flowData)
-  flowApi.draft({id: flow.value.id, config: {nodes: flowData.nodes, edges: flowData.edges}})
+  flowApi.draft({id: workflow.value.id, config: {nodes: flowData.nodes, edges: flowData.edges}})
 }
 
 const flowPublish = () => {
   const flowData = getFlowData()
   console.log('flowPublish', flowData)
-  flowApi.publish({id: flow.value.id, config: {nodes: flowData.nodes, edges: flowData.edges}}).then(res => {
+  flowApi.publish({id: workflow.value.id, config: {nodes: flowData.nodes, edges: flowData.edges}}).then(res => {
     if (res.data?.suppressInfos && res.data?.suppressInfos?.length > 0) {
       ElNotification({
         title: t('messages.verifyFail'),
@@ -252,8 +252,8 @@ const flowPublish = () => {
 
 const updateFlow = () => {
   flowApi.update(saveDialogForm.value).then(res => {
-    flow.value.name = saveDialogForm.value.name
-    flow.value.description = saveDialogForm.value.description
+    workflow.value.name = saveDialogForm.value.name
+    workflow.value.description = saveDialogForm.value.description
     saveDialogOpen.value = false
   })
 }
@@ -266,7 +266,6 @@ const initCreateMode = () => {
 }
 
 const goBack = () => {
-  console.log(123)
   router.back()
 }
 

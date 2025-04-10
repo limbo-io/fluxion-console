@@ -17,9 +17,9 @@ import {I18nModel} from "@/i18n/types";
 
 const lang: I18nModel = {
   menus: {
-    trigger: '触发器',
-    flow: '流程',
-    execution: '执行记录',
+    triggers: '触发器',
+    workflows: '工作流',
+    executions: '执行记录',
     apps: "应用管理"
   },
   options: {
@@ -28,7 +28,8 @@ const lang: I18nModel = {
     create: '新建',
     save: '保存',
     delete: '删除',
-    nodes: "查看节点"
+    nodes: "查看节点",
+    detail: "详情",
   },
   messages: {
     verifyFail: '校验失败',

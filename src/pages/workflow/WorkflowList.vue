@@ -20,14 +20,14 @@
       <el-button @click="() => {flowEditDialogOpen = true;}">新建</el-button>
     </el-header>
     <el-main>
-      <el-table :data="flows" style="width: 100%">
+      <el-table :data="workflows" style="width: 100%">
         <el-table-column prop="id" label="ID" width="300" />
         <el-table-column prop="name" label="名称" width="150" />
         <el-table-column prop="description" label="描述" width="200" />
         <el-table-column label="操作">
           <template #default="scope">
             <el-button link type="primary" size="small" @click="() => {
-              router.push(`/flow/edit/${scope.row.id}`)
+              router.push(`/workflow/edit/${scope.row.id}`)
             }">
               {{ t('options.setting') }}
             </el-button>
@@ -40,30 +40,30 @@
     </el-main>
   </el-container>
 
-  <FlowEditCommonItem v-model:opened="flowEditDialogOpen" v-model:flow="flow" />
+  <WorkflowEditCommonItem v-model:opened="flowEditDialogOpen" v-model:workflow="workflow" />
 </template>
 
 <script lang="ts" setup>
 import {useRouter} from "vue-router";
-import flowApi from "@/api/flowApi";
-import FlowEditCommonItem from "@/pages/flow/components/FlowEditCommonItem.vue";
-import {IFlow} from "@/types/flow";
+import workflowApi from "@/api/workflowApi";
+import WorkflowEditCommonItem from "@/pages/workflow/components/WorkflowEditCommonItem.vue";
+import {IWorkflow} from "@/types/workflow";
 import {useI18n} from 'vue-i18n'
 
 const { t } = useI18n()
 
 const router = useRouter()
 const flowEditDialogOpen = ref<boolean>(false)
-const flow = ref<IFlow>({name: ''})
-const flows = ref<IFlow[]>([])
+const workflow = ref<IWorkflow>({name: ''})
+const workflows = ref<IWorkflow[]>([])
 
 const deleteFlow = (id: string) => {
-  flowApi.delete(id)
+  workflowApi.delete(id)
 }
 
 const page = () => {
-  flowApi.page({}).then(res => {
-    flows.value = res.data ?? []
+  workflowApi.page({}).then(res => {
+    workflows.value = res.data ?? []
   })
 }
 page()

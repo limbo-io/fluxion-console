@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import {UUID} from 'uuidjs'
-import {FlowNodeProps, IExecutorNode, IFlowNode, NodeType} from '@/types/node'
+import {FlowNodeProps, IExecutorNode, IWorkflowNode, NodeType} from '@/types/node'
 import {XYPosition} from '@vue-flow/core/dist/types/flow'
 import {CustomExecutorConfig, ExecutorConfig, ExecutorType} from "@/types/execute";
 
@@ -26,7 +26,7 @@ export const newEdgeId = () => {
   return `${UUID.generate()}_edge`
 }
 
-export const newNodeData = (id: string, type: NodeType, name?: string): IFlowNode => {
+export const newNodeData = (id: string, type: NodeType, name?: string): IWorkflowNode => {
   return {
     id,
     type,

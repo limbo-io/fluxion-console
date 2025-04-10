@@ -1,7 +1,7 @@
-import {IFlowNode} from "@/types/node";
+import {IWorkflowNode} from "@/types/node";
 import {TriggerConfig} from "@/types/trigger";
 
-export interface FlowEdge {
+export interface WorkflowEdge {
   /**
    * Source node id
    */
@@ -20,18 +20,18 @@ export interface FlowEdge {
   targetHandleId: String
 }
 
-export interface FlowConfig {
+export interface WorkflowConfig {
   /**
    * 节点信息
    */
-  nodes: IFlowNode[]
+  nodes: IWorkflowNode[]
   /**
    * 连接信息
    */
-  edges: FlowEdge[]
+  edges: WorkflowEdge[]
 }
 
-export interface IFlow {
+export interface IWorkflow {
 
   id?: string
 
@@ -49,7 +49,7 @@ export interface IFlow {
   /**
    * 配置信息
    */
-  config?: FlowConfig
+  config?: WorkflowConfig
   /**
    * 触发器
    */
@@ -57,5 +57,5 @@ export interface IFlow {
 }
 
 export interface FlowProps {
-  flow: IFlow
+  workflow: IWorkflow
 }

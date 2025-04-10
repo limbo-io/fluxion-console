@@ -22,26 +22,29 @@
     <el-main>
       <el-table :data="triggers" style="width: 100%">
         <el-table-column prop="id" label="ID" width="180"/>
+        <el-table-column prop="name" label="名称" width="180"/>
         <el-table-column prop="description" label="描述" width="180"/>
         <el-table-column label="触发方式" width="180">
           <template #default="scope">
-            <template v-if="scope.row.type === TriggerType.SCHEDULE">
-              {{ '调度触发' }}
+            <template v-if="scope.row.config.type === TriggerType.SCHEDULE">
+              <p>{{ '调度触发' }}</p>
+              <p>{{ scheduleDesc(scope.row.config) }}</p>
             </template>
-            <template v-else-if="scope.row.type === TriggerType.WEBHOOK">
-              {{ 'webhook' }}
+            <template v-else-if="scope.row.config.type === TriggerType.WEBHOOK">
+              <p>{{ 'webhook' }}</p>
             </template>
           </template>
         </el-table-column>
         <el-table-column label="基本信息" width="180">
           <template #default="scope">
-            <template v-if="scope.row.refType === ExecutableType.FLOW">
-              {{ '流程' }}
+            <template v-if="scope.row.config.executeConfig.type === ExecutableType.WORKFLOW">
+              <p>{{ '流程' }}</p>
+              <p>{{ scope.row.config.executeConfig.workflowId }}</p>
             </template>
-            <template v-else-if="scope.row.refType === ExecutableType.EXECUTOR">
-              {{ '执行器' }}
+            <template v-else-if="scope.row.config.executeConfig.type === ExecutableType.EXECUTOR">
+              <p>{{ '执行器' }}</p>
+              <p>{{ scope.row.config.executeConfig.executor.name }}</p>
             </template>
-            {{ scope.row.refId }}
           </template>
         </el-table-column>
         <el-table-column label="是否启用" align="center" width="100">
@@ -75,7 +78,7 @@
 <script lang="ts" setup>
 import {useRouter} from "vue-router";
 import {useI18n} from 'vue-i18n'
-import {Trigger, TriggerType} from "@/types/trigger";
+import {ScheduleTriggerConfig, ScheduleType, Trigger, TriggerType} from "@/types/trigger";
 import triggerApi from "@/api/triggerApi";
 import {ExecutableType} from "@/types/execute";
 import TriggerEditDialog from "@/pages/trigger/components/TriggerEditDialog.vue";
@@ -89,6 +92,17 @@ const trigger = ref<Trigger>({name: ''})
 
 const deleteTrigger = (id: string) => {
   triggerApi.delete(id)
+}
+
+const scheduleDesc = (config: ScheduleTriggerConfig): string => {
+  const scheduleOption = config.scheduleOption
+  if (scheduleOption.type == ScheduleType.CRON) {
+      return "corn: " + scheduleOption.cron
+  } else if (ScheduleType.FIXED_DELAY == scheduleOption.type || ScheduleType.FIXED_RATE == scheduleOption.type) {
+    return scheduleOption.type + ": " + scheduleOption.delay + "/" + scheduleOption.interval
+  } else  {
+    return "unknown"
+  }
 }
 
 const changeEnabled = (triggerId: string, enabled: boolean) => {

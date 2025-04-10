@@ -50,9 +50,8 @@
 <script lang="ts" setup>
 import {useI18n} from 'vue-i18n'
 import triggerApi from "@/api/triggerApi"
-import {ScheduleTriggerConfig, ScheduleType, TriggerConfig, TriggerType} from "@/types/trigger"
+import {ScheduleTriggerConfig, ScheduleType, TriggerConfig, TriggerType, TriggerTypeUtils} from "@/types/trigger"
 import {ref} from "vue";
-import {useRouter} from "vue-router";
 import ExecuteConfigForm from "@/pages/trigger/components/execute/ExecuteConfigForm.vue";
 import ScheduleTriggerForm from "@/pages/trigger/components/trigger/ScheduleTriggerForm.vue";
 
@@ -66,10 +65,7 @@ const config = ref<TriggerConfig>({
 })
 
 const triggerTypes = [
-  {
-    label: '调度',
-    value: TriggerType.SCHEDULE,
-  }
+  TriggerTypeUtils.option(TriggerType.SCHEDULE)
 ]
 
 const changeTriggerType = (triggerType: TriggerType) => {

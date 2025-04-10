@@ -9,21 +9,21 @@ export interface MenuItem {
 export const menuItems: MenuItem[] = [
   {
     id: '000001',
-    name: 'menus.trigger',
+    name: 'menus.triggers',
     icon: 'clock',
     route: '/trigger/list',
   },
   {
     id: '000002',
-    name: 'menus.flow',
+    name: 'menus.workflows',
     icon: 'calendar-days',
-    route: '/flow/list',
+    route: '/workflow/list',
   },
   {
     id: '000003',
-    name: 'menus.execution',
+    name: 'menus.executions',
     icon: 'history',
-    route: '/flow/edit',
+    route: '/execution/list',
   },
   {
     id: '000004',

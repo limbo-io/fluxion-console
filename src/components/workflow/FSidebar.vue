@@ -17,13 +17,13 @@
 </template>
 
 <script lang="ts" setup>
-import {IExecutorNode, IFlowNode, NodeType} from '@/types/node'
+import {IExecutorNode, IWorkflowNode, NodeType} from '@/types/node'
 import {Cpu} from "lucide-vue-next"
 
 const isOpen = ref(false)
-  const node = ref<IFlowNode>()
+  const node = ref<IWorkflowNode>()
 
-  const opened = (val: boolean, flowNode: IFlowNode) => {
+  const opened = (val: boolean, flowNode: IWorkflowNode) => {
     isOpen.value = val
     node.value = flowNode
   }

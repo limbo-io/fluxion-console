@@ -18,11 +18,13 @@
   <el-container>
     <el-main>
       <el-table :data="apps" style="width: 100%">
-        <el-table-column prop="appId" label="ID" />
-        <el-table-column prop="appName" label="名称" />
+        <el-table-column prop="appId" label="ID"/>
+        <el-table-column prop="appName" label="名称"/>
         <el-table-column label="操作">
           <template #default="scope">
-            <el-button link type="primary" size="small" @click="deleteTrigger(scope.row.id)">
+            <el-button link type="primary" size="small" @click="() => {
+              router.push(`/worker/list?appId=${scope.row.appId}`)
+            }">
               {{ t('options.nodes') }}
             </el-button>
           </template>
@@ -37,12 +39,9 @@ import {useI18n} from 'vue-i18n'
 import appApi, {AppView} from "@/api/appApi";
 
 const {t} = useI18n()
+const router = useRouter()
 
 const apps = ref<AppView[]>([])
-
-const deleteTrigger = (id: string) => {
-  console.log(id)
-}
 
 const page = () => {
   appApi.page({}).then(res => {
