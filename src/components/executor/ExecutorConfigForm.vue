@@ -41,7 +41,7 @@
 <script lang="ts" setup>
 import {CustomExecutorConfig, ExecuteMode, ExecutorConfig, ExecutorType} from "@/types/execute";
 import {Option} from "@/types/common";
-import appApi from "@/api/appApi";
+import appApi, {AppView} from "@/api/appApi";
 
 const model = defineModel<ExecutorConfig>({required: true})
 
@@ -66,6 +66,8 @@ const executeModeOptions = [
 ]
 
 const appOptions = ref<Option[]>([])
+let selectApp: AppView | undefined;
+
 const loadAppOptions = (keyword?: string) => {
   appApi.page({name: keyword}).then(res => {
     appOptions.value = res.data?.map(app => {
@@ -74,6 +76,19 @@ const loadAppOptions = (keyword?: string) => {
         value: app.appId
       }
     }) ?? []
+  })
+}
+
+// 如果已经选中应用，需要加载进来
+if (model.value.appId) {
+  appApi.get(model.value.appId).then(res => {
+    selectApp = res.data
+    if (selectApp) {
+      appOptions.value = [{
+        label: selectApp.appName,
+        value: selectApp.appId
+      }]
+    }
   })
 }
 </script>
