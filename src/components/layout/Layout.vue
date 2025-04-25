@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import AppMain from "./Main.vue";
+import AppMain from "./AppMain.vue";
 import Menu from "./Menu.vue";
 import NavBar from "./NavBar.vue";
 
