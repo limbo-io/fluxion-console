@@ -7,6 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AppMain: typeof import('./components/layout/AppMain.vue')['default']
     ControlPanel: typeof import('@/components/workflow/ControlPanel.vue')['default']
     CustomExecutorConfigForm: typeof import('./components/executor/CustomExecutorConfigForm.vue')['default']
     EndNode: typeof import('./components/workflow/node/EndNode.vue')['default']
@@ -17,7 +18,6 @@ declare module 'vue' {
     FNode: typeof import('./components/workflow/FNode.vue')['default']
     FSidebar: typeof import('./components/workflow/FSidebar.vue')['default']
     Layout: typeof import('./components/layout/Layout.vue')['default']
-    Main: typeof import('./components/layout/Main.vue')['default']
     Menu: typeof import('./components/layout/Menu.vue')['default']
     NavBar: typeof import('./components/layout/NavBar.vue')['default']
     PageHeader: typeof import('./components/workflow/PageHeader.vue')['default']

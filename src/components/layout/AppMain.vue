@@ -10,5 +10,6 @@
 <style scoped>
 .app-main {
   height: 100%;
+  margin-top: 20px;
 }
 </style>

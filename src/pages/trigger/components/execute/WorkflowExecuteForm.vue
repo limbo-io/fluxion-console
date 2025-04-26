@@ -22,8 +22,10 @@ import {WorkflowExecuteConfig} from "@/types/execute";
 import {ref} from "vue";
 import {Option} from "@/types/common";
 import workflowApi from "@/api/workflowApi";
+import {IWorkflow} from "@/types/workflow";
 
 const model = defineModel<WorkflowExecuteConfig>({required: true})
+let selectWorkflow: IWorkflow | undefined;
 
 const workflowOptions = ref<Option[]>([])
 const loadFlowOptions = (keyword?: string) => {
@@ -34,6 +36,19 @@ const loadFlowOptions = (keyword?: string) => {
         value: workflow.id
       }
     }) ?? []
+  })
+}
+
+// 如果已经选中流程，需要加载进来
+if (model.value.workflowId) {
+  workflowApi.get(model.value.workflowId).then(res => {
+    selectWorkflow = res.data
+    if (selectWorkflow) {
+      workflowOptions.value = [{
+        label: selectWorkflow.name,
+        value: selectWorkflow.id!!
+      }]
+    }
   })
 }
 </script>

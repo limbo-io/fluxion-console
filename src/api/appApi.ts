@@ -1,5 +1,5 @@
 import http from "@/plugins/axios";
-import {PageRequest, PageResponse} from "@/types/request";
+import {PageRequest, PageResponse, Response} from "@/types/request";
 
 export interface AppView {
   appId: string
@@ -11,5 +11,12 @@ export default {
     name?: string
   } & PageRequest): Promise<PageResponse<AppView>> => {
     return http.post('/api/v1/app/page', data)
+  },
+  get: (id: string): Promise<Response<AppView>> => {
+    return http.get('/api/v1/app/get', {
+      params: {
+        id: id
+      }
+    })
   },
 }
