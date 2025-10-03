@@ -4,7 +4,7 @@
 
     <!-- LOGO -->
     <div class="logo-container">
-      <img class="logo-img" src="@/assets/logo.png" alt="logo"/>
+      <img class="logo-img" src="@/assets/logo-with-code.png" alt="logo"/>
     </div>
 
     <el-scrollbar>

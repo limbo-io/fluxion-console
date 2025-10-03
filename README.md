@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/logo-with-code.png" alt="fluxion console logo" width="200" height="200">
+</p>
+
 # fluxion-console
 
 [fluxion](https://github.com/limbo-io/fluxion) 分布式系统的前端页面
